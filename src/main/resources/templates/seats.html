@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seat Reservation System</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">SEAT RESERVATION SYSTEM</h1>
+    <h2 class="remaining-seats">There are <span th:text="${remainingSeats}"></span> remaining seats</h2>
+
+    <!-- Name input field outside the loop -->
+    <div class="name-input">
+        <label for="nameInput">Enter your name:</label>
+        <input type="text" id="nameInput" name="name" />
+    </div>
+
+    <!-- Seat list -->
+    <div class="seat-list">
+        <div th:each="seat : ${seats}" class="seat-item">
+            <div>
+                <span th:text="${seat.seatId}"></span>
+            </div>
+            <div th:if="${seat.reserved}">
+                <span th:text="'Reserved by ' + ${seat.reservedBy}"></span>
+                <form th:action="'/seats/cancel/' + ${seat.seatId}" method="post">
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+            </div>
+            <div th:unless="${seat.reserved}">
+                <form th:action="'/seats/reserve/' + ${seat.seatId}" method="post">
+                    <input type="hidden" name="name" th:value="${name}">
+                    <button type="submit">Reserve</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
