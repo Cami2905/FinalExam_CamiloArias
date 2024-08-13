@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //THIS IS THE GITHUB LINK TO MY PROJECT: https://github.com/Cami2905/FinalExam_CamiloArias.git
-
+//PROJECT RUNS ON http://localhost:8080/seats
 @Controller
 @RequestMapping("/seats")
 public class SeatController {
